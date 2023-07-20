@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Todo List</h1>
+        <form action="{{ url_for('add_todo') }}" method="post" class="todo-form">
+            <input type="text" name="task" placeholder="Enter a task">
+            <button type="submit">Add</button>
+        </form>
+        <ul class="todo-list">
+            {% for todo in todos %}
+            <li>
+                <span>{{ todo }}</span>
+                <form class="delete-form" action="{{ url_for('delete_todo', task=todo) }}" method="post">
+                    <button type="submit" class="delete-btn">Delete</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
